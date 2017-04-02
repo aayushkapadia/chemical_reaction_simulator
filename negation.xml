@@ -1,15 +1,15 @@
 <crn>
 	<reaction id="1">
-		<product name="a-ab" coeff="1" absense_id="a"/>
+		<product name="a-ab" coeff="1" absense_name="a"/>
 	</reaction>
 	<reaction id="2">
 		<reactant name="a" coeff="1"/>
-		<reactant name="a-ab" coeff="1" absense_id="a"/>
+		<reactant name="a-ab" coeff="1" absense_name="a"/>
 		<product name="a" coeff="1"/>
 	</reaction>
 	<reaction id="3">
-		<reactant name="a-ab" coeff="2" absense_id="a"/>
-		<product name="a-ab" coeff="1" absense_id="a"/>
+		<reactant name="a-ab" coeff="2" absense_name="a"/>
+		<product name="a-ab" coeff="1" absense_name="a"/>
 	</reaction>
 	<init>
 		<chemical name="a" val="5">
