@@ -81,3 +81,9 @@ class ReactionNetwork:
 			if reaction.satisfies(self.concentrations):
 				return reaction
 		return None
+
+	def doReaction(self,reaction):
+		for reactant in reaction.reactants:
+			self.concentrations[reactant.name] -= reactant.coeff
+		for product in reaction.products:
+			self.concentrations[product.name] -= product.coeff
