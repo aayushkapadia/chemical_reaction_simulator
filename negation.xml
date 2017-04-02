@@ -1,0 +1,17 @@
+<crn>
+	<reaction id="1">
+		<product id="a-ab" coeff="1" absense_id="a"/>
+	</reaction>
+	<reaction id="2">
+		<reactant id="a" coeff="1"/>
+		<reactant id="a-ab" coeff="1" absense_id="a"/>
+		<product id="a" coeff="1"/>
+	</reaction>
+	<reaction id="3">
+		<reactant id="a-ab" coeff="2" absense_id="a"/>
+		<product id="a-ab" coeff="1" absense_id="a"/>
+	</reaction>
+	<init>
+		<chemical id="a" val="5">
+	</init>
+</crn>
