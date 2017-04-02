@@ -1,17 +1,19 @@
 <crn>
-	<reaction rate_constant="1">
-		<product name="a-ab" coeff="1" absense_name="a"/>
-	</reaction>
-	<reaction rate_constant="2">
-		<reactant name="a" coeff="1"/>
-		<reactant name="a-ab" coeff="1" absense_name="a"/>
-		<product name="a" coeff="1"/>
-	</reaction>
-	<reaction rate_constant="3">
-		<reactant name="a-ab" coeff="2" absense_name="a"/>
-		<product name="a-ab" coeff="1" absense_name="a"/>
-	</reaction>
+	<reactions>
+		<reaction rate_constant="1">
+			<product name="a-ab" coeff="1" absense_name="a"/>
+		</reaction>
+		<reaction rate_constant="2">
+			<reactant name="a" coeff="1"/>
+			<reactant name="a-ab" coeff="1" absense_name="a"/>
+			<product name="a" coeff="1"/>
+		</reaction>
+		<reaction rate_constant="3">
+			<reactant name="a-ab" coeff="2" absense_name="a"/>
+			<product name="a-ab" coeff="1" absense_name="a"/>
+		</reaction>
+	</reactions>
 	<init>
-		<chemical name="a" val="5">
+		<chemical name="a" val="5"/>
 	</init>
 </crn>
