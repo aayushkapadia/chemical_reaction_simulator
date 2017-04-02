@@ -3,6 +3,7 @@ from Reaction import *
 class Simulator:
 	def __init__(self,crn):
 		self.crn = crn
+		self.crn.prepare()
 
 	def simulate(self,timeSteps):
 		print self.crn.concentrations
