@@ -29,12 +29,16 @@ class Reaction:
 
 	def satisfies(self,concentrations):
 		for reactant in self.reactants:
-			concentration = concentrations.get(reactant.name)
-			if concentration==None:
-				return False
-			else:
-				if concentration<reactant.coeff:
+			if reactant.isAbsenseIndicator():
+				if concentrations.get(reactant.absense_name)>0:
 					return False
+			else:
+				concentration = concentrations.get(reactant.name)
+				if concentration==None:
+					return False
+				else:
+					if concentration<reactant.coeff:
+						return False
 		return True
 
 class ReactionNetwork:
@@ -86,6 +90,9 @@ class ReactionNetwork:
 
 	def doReaction(self,reaction):
 		for reactant in reaction.reactants:
-			self.concentrations[reactant.name] -= reactant.coeff
+			if reactant.isAbsenseIndicator():
+				pass
+			else:
+				self.concentrations[reactant.name] -= reactant.coeff
 		for product in reaction.products:
 			self.concentrations[product.name] += product.coeff
