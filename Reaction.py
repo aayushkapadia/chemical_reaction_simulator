@@ -1,3 +1,5 @@
+import operator 
+
 class ReactionChemical:
 	def __init__(self,name,coeff,absense_name = None):
 		self.name = name
@@ -7,7 +9,7 @@ class ReactionChemical:
 			self.coeff = 1
 
 	def isAbsenseIndicator(self):
-		if absense_name==None:
+		if self.absense_name==None:
 			return False
 		else:
 			return True
@@ -36,7 +38,7 @@ class Reaction:
 		return True
 
 class ReactionNetwork:
-	def __init__(self,k):
+	def __init__(self):
 		self.reactions = []
 		self.concentrations = dict()
 
@@ -72,7 +74,7 @@ class ReactionNetwork:
 		return True
 
 	# Sort the reactions according to rate constant
-	def prepare():
+	def prepare(self):
 		self.reactions = sorted(self.reactions, key=operator.attrgetter('k'))
 
 	# Returns the fastest reaction which satisfies min concentration
@@ -86,4 +88,4 @@ class ReactionNetwork:
 		for reactant in reaction.reactants:
 			self.concentrations[reactant.name] -= reactant.coeff
 		for product in reaction.products:
-			self.concentrations[product.name] -= product.coeff
+			self.concentrations[product.name] += product.coeff
