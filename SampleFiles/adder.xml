@@ -1,0 +1,16 @@
+<crn>
+	<reactions>
+		<reaction rate_constant="1">
+			<reactant name="A" coeff="1"/>
+			<product name="C" coeff="1"/>
+		</reaction>
+		<reaction rate_constant="1">
+			<reactant name="B" coeff="1"/>
+			<product name="C" coeff="1"/>
+		</reaction>
+	</reactions>
+	<init>
+		<chemical name="A" val="29"/>
+		<chemical name="B" val="137"/>
+	</init>
+</crn>
