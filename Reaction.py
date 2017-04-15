@@ -120,7 +120,7 @@ class ReactionNetwork:
 			if product.isAbsenseIndicator():
 				self.concentrations[prodcut.absense_name] = 0
 			else:
-				self.concentrations[prodcut.name] = 0
+				self.concentrations[product.name] = 0
 
 	
 	def addInitConcentration(self,chemical_name,initConcentration):
