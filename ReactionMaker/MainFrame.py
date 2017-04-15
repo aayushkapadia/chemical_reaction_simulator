@@ -6,6 +6,14 @@ import multiply
 import logarithm
 import power
 
+import os,sys,inspect
+
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0,parentdir) 
+
+import XMLParser
+
 def printWelcomeMessage():
 	print "Welcome to the Chemical Computer world!!"
 
@@ -64,35 +72,48 @@ def showInvalidMessageAndQuit():
 	print "Quitting the Chemical World ..."
 	quit()
 
+def plotResults(xmlFile,chemicalList,timeOfSimulation):
+	sim = XMLParser.getSimulator(xmlFile)
+	sim.simulate(timeOfSimulation)
+	sim.plot(chemicalList)
+
 def executeBasicFunction(userChoice):
 	outputFileName = ''
+	chemicalList = []
 
 	if userChoice == 1:
-		outputFileName = executeInversion()
+		outputFileName,chemicalList = executeInversion()
 	elif userChoice == 2:
-		outputFileName = executeDuplicate()
+		outputFileName,chemicalList = executeDuplicate()
 	elif userChoice == 3:
-		outputFileName = executeDecrement()
+		outputFileName,chemicalList = executeDecrement()
 	elif userChoice == 4:
-		outputFileName = executeIncrement()
+		outputFileName,chemicalList = executeIncrement()
 	else:
 		showInvalidMessageAndQuit()
 
 	print 'Result File ' + outputFileName + ' Created'
+
+	timeOfSimulation = int(raw_input('Enter Time Of Simulation: '))
+	plotResults(outputFileName,chemicalList,timeOfSimulation)
 
 def executeAdvancedFunction(userChoice):
 	outputFileName = ''
+	chemicalList = []
 
 	if userChoice == 1:
-		outputFileName = executeMultiply()
+		outputFileName,chemicalList = executeMultiply()
 	elif userChoice == 2:
-		outputFileName = executeLogarithm()
+		outputFileName,chemicalList = executeLogarithm()
 	elif userChoice == 3:
-		outputFileName = executePower()
+		outputFileName,chemicalList = executePower()
 	else:
 		showInvalidMessageAndQuit()
 
 	print 'Result File ' + outputFileName + ' Created'
+
+	timeOfSimulation = int(raw_input('Enter Time Of Simulation: '))
+	plotResults(outputFileName,chemicalList,timeOfSimulation)
 
 def executeUserChoice(userChoice):
 	if userChoice == 1:
