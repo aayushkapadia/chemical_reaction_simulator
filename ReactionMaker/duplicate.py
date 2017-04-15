@@ -19,4 +19,4 @@ def execute(input1):
 
 	crn.writeXMLToFile(outputFileName)
 
-	return outputFileName
+	return outputFileName,['y','ydash']

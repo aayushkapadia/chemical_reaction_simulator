@@ -15,4 +15,4 @@ def execute(input1,input2):
 
 	crn.writeXMLToFile(outputFileName)
 
-	return outputFileName
+	return outputFileName,['x','y','z']
