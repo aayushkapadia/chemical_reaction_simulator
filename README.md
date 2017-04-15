@@ -8,3 +8,4 @@ Assumptions of Ideal Simulator :
 
 It accepts the input of chemical reaction network as a xml file.
 
+To run the Chemical World type command "python ReactionMaker/MainFrame.py"
