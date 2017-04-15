@@ -1,0 +1,12 @@
+Absence:
+y-ab -> y
+g-ab -> g
+
+Reactions:
+y + g -> ydash + g {1}
+g + y-ab -> {2}
+g-ab + ydash -> y + z {3}
+
+Concentrations:
+y->5
+g->1
