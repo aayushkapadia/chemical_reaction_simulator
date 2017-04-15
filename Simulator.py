@@ -27,7 +27,7 @@ class Simulator:
 
 	def plot(self,listOfChemicals):
 		for chemical in listOfChemicals:
-			plt.plot(self.simulationData[chemical],label=chemical)
+			plt.plot(self.simulationData[chemical],label=chemical+'= '+str(self.simulationData[chemical][-1]))
 		plt.ylabel('Concentration')
 		plt.xlabel('Time (unit time)')
 		plt.legend()
