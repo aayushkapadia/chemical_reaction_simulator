@@ -36,14 +36,12 @@ def getXMLFromTxt(file_name):
 	while True:
 		inputString = take_input()
 		if inputString=="":
+			continue
+		if inputString == "Concentrations:":
 			break
 		i = inputString.index('{')
-		crn.addReaction(inputString[:i],inputString[i+1:-1])
-
-	while True:
-		inputString = take_input()
-		if inputString == "Concentrations:" :
-			break
+		j = inputString.index('}')
+		crn.addReaction(inputString[:i],inputString[i+1:j])
 
 	while True:
 		inputString = take_input()
@@ -56,4 +54,3 @@ def getXMLFromTxt(file_name):
 
 	print 'successfully written '+file_name
 	return file_name
-
