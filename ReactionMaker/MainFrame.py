@@ -14,6 +14,10 @@ sys.path.insert(0,parentdir)
 
 import XMLParser
 
+def getHistoryFileName(xmlFileName):
+	y = xmlFileName[:-3]
+	return 'history ' + y + 'txt'
+
 def printWelcomeMessage():
 	print "Welcome to the Chemical Computer world!!"
 
@@ -73,8 +77,9 @@ def showInvalidMessageAndQuit():
 	quit()
 
 def plotResults(xmlFile,chemicalList,timeOfSimulation):
+	historyFile = getHistoryFileName(xmlFile)
 	sim = XMLParser.getSimulator(xmlFile)
-	sim.simulate(timeOfSimulation)
+	sim.simulate(timeOfSimulation,historyFile)
 	sim.plot(chemicalList)
 
 def executeBasicFunction(userChoice):

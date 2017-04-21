@@ -15,15 +15,19 @@ class Simulator:
 		for chemical_name in concentrations:
 			self.simulationData[chemical_name].append(concentrations[chemical_name])
 
-	def simulate(self,timeSteps):
-		#print self.crn.concentrations
+	def simulate(self,timeSteps,filePath):
+		historyFile = open(filePath,'w')
+		historyFile.write(str(self.crn.concentrations))
+		historyFile.write('\n')
 		self.addInSimulationData(self.crn.concentrations)
 		for i in range(timeSteps):
 			reaction = self.crn.getFastestReaction()
 			if reaction != None:
 				self.crn.doReaction(reaction)
 			self.addInSimulationData(self.crn.concentrations)
-			#print self.crn.concentrations
+			historyFile.write(str(self.crn.concentrations))
+			historyFile.write('\n')
+		print 'History file ' + filePath + ' created'
 
 	def plot(self,listOfChemicals):
 		for chemical in listOfChemicals:
@@ -34,6 +38,7 @@ class Simulator:
 		plt.xlabel('Time (unit time)')
 		plt.legend()
 		plt.show()
+
 
 
 		
