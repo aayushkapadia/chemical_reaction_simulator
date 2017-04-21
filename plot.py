@@ -4,7 +4,7 @@ import textToXML
 
 def getHistoryFileName(xmlFileName):
 	y = xmlFileName[:-3]
-	return 'history ' + y + 'txt'
+	return 'history_' + y + 'txt'
 
 def plotFromXML(fileName,simulationTime,chemicalList):
 	historyFile = getHistoryFileName(fileName)

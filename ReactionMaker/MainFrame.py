@@ -16,7 +16,7 @@ import XMLParser
 
 def getHistoryFileName(xmlFileName):
 	y = xmlFileName[:-3]
-	return 'history ' + y + 'txt'
+	return 'history_' + y + 'txt'
 
 def printWelcomeMessage():
 	print "Welcome to the Chemical Computer world!!"
