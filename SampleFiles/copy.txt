@@ -1,0 +1,18 @@
+Absence:
+temp-ab -> temp
+g2-ab -> g2
+g3-ab -> g3
+g4-ab -> g4
+
+Reactions:
+temp -> 	{100}
+
+x + g -> z + g + temp {100}  // z = x , x = 0
+temp-ab + g + g2-ab -> g2 {1}
+
+z + g2 -> x + y + g2 + temp {100} // x = z,y = z , z = 0
+temp-ab + g2 + g3-ab -> g3 {1}
+
+Concentrations:
+x->3
+g->1

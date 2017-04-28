@@ -1,0 +1,63 @@
+/*
+	Syntax : 
+
+	transfer(fromChemical,toChemical,remaining,presense={},absense={},indicator={})
+
+	To initiate the transfer it will need at least 1 molecule of all presense molecules and there shouls be no absense molecules present
+
+	When transfer is completed ,1 molecule of each indicator molecules will be generated.
+
+	If from chemical is null, then just the indicator molecules are created.
+
+	If from chemical is not null but toChemical is null, then all except remaining molecules of fromChemical will go to waste.
+
+	If concentration of fromChemical is less than remaining then just the indicator molecules are created.
+
+	There should be no overlap between presense,absense,indicators,fromChemical and toChemical
+
+	Effective Pseudocode : 
+
+	if allPresent(presense) and allAbsent(absense) :
+		if toChemical == null:
+			if fromChemical != null:
+				if fromChemical > remaining :
+					fromChemical = remaining
+		else:
+			if fromChemical != null:
+				if fromChemical > remaining :
+					toChemical+=(fromChemical - remaining)
+					fromChemical = remaining
+	removeAllPresenseMolecules()
+	addAMolecule(indicators)
+				
+*/
+
+/*
+	Example 1 : Decrement (at least 1 molecule of g should be present and 1 molecule of gdash will be created on completion)
+
+	transfer(x,y,1,presense={g},indicator={ind1})  // y = x - 1 , x = 1
+	transfer(x,null,0,presense={ind1},indicator={ind2}) // x = 0
+	transfer(y,x,0,presense={ind2},indicator={gdash})	// x = y,y = 0
+	transfer(ind1,null,presense={gdash}) // flushes the extra chemicals
+	transfer(ind2,null,presense={gdash}) // flushes the extra chemicals
+*/
+
+/*
+	Implementation
+
+	(remaining+1)x + g -> y + (remaining)x + temp + g {fast}
+
+	temp  -> null {slow}
+
+	temp-ab + g + g2-ab -> g2 {slow}
+
+*/
+
+/*
+	Concrete example for x = 5,g = 1
+
+	x + g -> y + temp {fast}
+	temp -> null	{fast}
+	temp-ab -> gdash	{slow}
+*/
+

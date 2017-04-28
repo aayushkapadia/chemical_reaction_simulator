@@ -1,0 +1,32 @@
+Absence:
+temp-ab -> temp
+g2-ab -> g2
+g3-ab -> g3
+g4-ab -> g4
+g5-ab -> g5
+g6-ab -> g6
+w-ab -> w
+
+Reactions:
+temp -> 	{100}
+
+x + g -> z + g + temp {100}  // z = x , x = 0
+temp-ab + g + g2-ab -> g2 {1}
+
+z + g2 -> x + y + g2 + temp {100} // x = z,y = z , z = 0
+temp-ab + g2 + g3-ab -> g3 {1}
+
+2w + g3 -> ydash + w + temp + g3 {100}  // y' = w - 1 , w = 1
+temp-ab + g3 + g4-ab -> g4 {1}
+
+w + g4 -> temp + g4 {100}		// w = 0
+temp-ab + g4 + g5-ab -> g5 {1}
+
+ydash + g5 -> w + temp + g5 {100}		// w = y' , y' = 0
+w + temp-ab + g5 -> w + g {1}  // looping
+w-ab + temp-ab + g5 + g6-ab -> g6 {1} // breaking of loop
+
+Concentrations:
+x->20
+w->5
+g->1
