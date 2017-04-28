@@ -1,17 +1,12 @@
-import inversion
-import duplicate
-import increment
-import decrement
-import multiply
-import logarithm
-import power
+import ReactionMaker.inversion as inversion
+import ReactionMaker.duplicate as duplicate
+import ReactionMaker.increment as increment
+import ReactionMaker.decrement as decrement
+import ReactionMaker.multiply as multiply
+import ReactionMaker.logarithm as logarithm
+import ReactionMaker.power as power
 
 import os,sys,inspect
-
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-parentdir = os.path.dirname(currentdir)
-sys.path.insert(0,parentdir) 
-
 import XMLParser
 
 def getHistoryFileName(xmlFileName):
