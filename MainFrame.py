@@ -6,8 +6,7 @@ import ReactionMaker.multiply as multiply
 import ReactionMaker.logarithm as logarithm
 import ReactionMaker.power as power
 
-import os,sys,inspect
-import XMLParser
+import Simulator.XMLParser as XMLParser
 
 def getHistoryFileName(xmlFileName):
 	y = xmlFileName[:-3]
