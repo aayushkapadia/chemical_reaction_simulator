@@ -11,6 +11,8 @@ import ReactionMaker.power as power
 import Simulator.XMLParser as XMLParser
 import Simulator.plot as plot
 
+from ExpressionSolver.solver import *
+
 def getHistoryFileName(xmlFileName):
 	y = xmlFileName[:-3]
 	return 'history_' + y + 'txt'
@@ -39,6 +41,7 @@ class MainWindow(QtGui.QMainWindow):
 		# Creating sub menus of simulate menu
 		simulate.addAction("Import XML")
 		simulate.addAction("Import txt")
+		simulate.addAction("Expression Solver")
 		simulate.triggered[QtGui.QAction].connect(self.simulatetrigger)
 
 
@@ -62,34 +65,84 @@ class MainWindow(QtGui.QMainWindow):
 
 	# Function for executuing any sub menu choosen from simulate menu
     def simulatetrigger(self,q):
+		if q.text() =="Expression Solver":
+
+			expression, ok = QtGui.QInputDialog.getText(self, 'Input Dialog','Enter Expression :')
+		    
+			if ok:
+				expression=str(expression)
+				expression=expression.replace(" ","")
+				op_out = []    #This holds the operators that are found in the string (left to right)
+				num_out = []   #this holds the non-operators that are found in the string (left to right)
+				operators = set('+-*/')
+				buff = []
+				for c in expression:  #examine 1 character at a time
+				    if c in operators:  
+				        #found an operator.  Everything we've accumulated in `buff` is 
+				        #a single "number". Join it together and put it in `num_out`.
+				        num_out.append(''.join(buff))
+				        buff = []
+				        op_out.append(c)
+				    else:
+				        #not an operator.  Just accumulate this character in buff.
+				        buff.append(c)
+				num_out.append(''.join(buff))   
+				af=[]
+				for i in range(0,len(num_out)):
+					af.append(num_out[i])
+					if i==len(num_out)-1:
+						break   
+					af.append(op_out[i])
+				for i in range(0,len(af)):
+				    if i==0:
+				        solver = Solver(int(af[i]))
+				    else:
+				        if af[i]=="+":
+				            solver.add(int(af[i+1]))
+				        elif af[i]=="*":
+				            solver.multiply(int(af[i+1]))
+
+				solver.printTxt('expression.txt')
+				print 'Expression.txt created'
+			else:
+				return
+
 		if q.text() == "Import XML":
 			fname = QtGui.QFileDialog.getOpenFileName(self, 'Select XML to Import','/home')
 			print fname
-		else:
+		elif q.text() == "Import txt":
 			fname = QtGui.QFileDialog.getOpenFileName(self, 'Select Text file to simulate','/home')
 			print fname
+		else:
+			fname = "expression.txt"
 
-		simulationtime, ok = QtGui.QInputDialog.getText(self, 'Input Dialog','Enter Simulation time:')
-	    
+		if q.text() != "Expression Solver":
+			simulationtime, ok = QtGui.QInputDialog.getText(self, 'Input Dialog','Enter Simulation time:')
+		else:
+			simulationtime = solver.getEstimatedTimeForCompletion()
+			ok = True
+
 		if ok:
 			print simulationtime
 		else:
 			return
 
-		reactantslist, ok = QtGui.QInputDialog.getText(self, 'Input Dialog','Enter Reactants to be plotted seperated by , for eg A,B,C')	    
-	    
-		if ok:
-			if "," in str(reactantslist):
-				reactantslist = str(reactantslist)
-				reactantslist = reactantslist.split(",")
-				print reactantslist
+		if q.text() != "Expression Solver":
+			reactantslist, ok = QtGui.QInputDialog.getText(self, 'Input Dialog','Enter Reactants to be plotted seperated by , for eg A,B,C')
+			if ok:
+				if "," in str(reactantslist):
+					reactantslist = str(reactantslist)
+					reactantslist = reactantslist.split(",")
+					print reactantslist
+				else:
+					c=[]
+					c.append(str(reactantslist))
+					reactantslist = c 
+					print reactantslist
 			else:
-				c=[]
-				c.append(str(reactantslist))
-				reactantslist = c 
-				print reactantslist
+				return	    
 		else:
-			return
+			reactantslist = solver.getListOfReactionsToPlot()
 
 		if q.text() == "Import XML":
 			print "Plotting From XML File"	
