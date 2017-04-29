@@ -107,18 +107,5 @@ class Solver:
 		reactionFile.write(self.getStringFromDict(self.initDict))
 
 
-sol = Solver(25)
-'''sol.add(5)
-sol.multiply(6)
-sol.add(10) '''
-sol.multiply(6)
-
-sol.printTxt('out.txt')
-
-print sol.getEstimatedTimeForCompletion()
-print sol.getListOfReactionsToPlot()
-print sol.getTheoriticalResult()
-
-
 
 
