@@ -3,9 +3,25 @@ import multiply
 
 class Solver:
 
+	def getListOfReactionsToPlot(self):
+		list1 = []
+		finalAnswer = 'x' + str(self.chemicalNumber - 1)
+		list1.append(finalAnswer)
+
+		return list1
+
+	def getEstimatedTimeForCompletion(self):
+		return self.estimatedTime + int(0.05*self.estimatedTime)
+
+	def getTheoriticalResult(self):
+		return self.currVal
+
 	def __init__(self,initValue):
 		self.chemicalNumber = 0
 		self.functionNumber = 1
+
+		self.currVal = initValue
+		self.estimatedTime = 0
 
 		self.reactions = []
 		self.absenseDict = dict()
@@ -19,6 +35,11 @@ class Solver:
 		self.chemicalNumber+=1
 
 	def multiply(self,value):
+		x = self.currVal
+		y = value
+		self.estimatedTime += (x*(x+1) + 2*x*(y+2) + 1)
+		self.currVal*=value;
+
 		input1 = 'x' + str(self.chemicalNumber - 1)
 		input2 = 'x' + str(self.chemicalNumber)
 		output = 'x' + str(self.chemicalNumber + 1)
@@ -33,6 +54,11 @@ class Solver:
 		self.reactions.append('')
 
 	def add(self,value):
+		x = self.currVal
+		y = value
+		self.estimatedTime += (x + y + 1)
+		self.currVal+=value;
+
 		input1 = 'x' + str(self.chemicalNumber - 1)
 		input2 = 'x' + str(self.chemicalNumber)
 		output = 'x' + str(self.chemicalNumber + 1)
@@ -81,13 +107,17 @@ class Solver:
 		reactionFile.write(self.getStringFromDict(self.initDict))
 
 
-sol = Solver(10)
-sol.add(5)
+sol = Solver(25)
+'''sol.add(5)
 sol.multiply(6)
-sol.add(10)
-sol.multiply(4)
+sol.add(10) '''
+sol.multiply(6)
 
 sol.printTxt('out.txt')
+
+print sol.getEstimatedTimeForCompletion()
+print sol.getListOfReactionsToPlot()
+print sol.getTheoriticalResult()
 
 
 
