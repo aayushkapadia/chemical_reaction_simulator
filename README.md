@@ -9,4 +9,6 @@ Assumptions of Ideal Simulator :
 
 It accepts the input of chemical reaction network as a xml file.
 
-To run the Chemical World type command "python MainFrame.py"
+To run the Chemical World from terminal type command "python MainFrame.py"
+
+To run the Chemical World in GUI type command "python GUI.py"
