@@ -4,7 +4,7 @@ import ReactionMaker.inversion as inversion
 import ReactionMaker.duplicate as duplicate
 import ReactionMaker.increment as increment
 import ReactionMaker.decrement as decrement
-import ReactionMaker.multiply as multiply
+import ReactionMaker.multiply as multiply1
 import ReactionMaker.logarithm as logarithm
 import ReactionMaker.power as power
 
@@ -321,7 +321,7 @@ class AdvancedWidget(QtGui.QWidget):
 		else:
 			return
 
-		outputFileName,chemicalList = multiply.execute(X,Y)
+		outputFileName,chemicalList = multiply1.execute(X,Y)
 
 		print 'Result File ' + outputFileName + ' Created'
 
@@ -378,7 +378,7 @@ class AdvancedWidget(QtGui.QWidget):
 		else:
 			return
 
-		outputFileName,chemicalList = multiply.execute(X,Y)
+		outputFileName,chemicalList = power.execute(X,Y)
 
 		print 'Result File ' + outputFileName + ' Created'
 
